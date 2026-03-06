@@ -43,3 +43,8 @@
     ]
   }
 }
+"homepage": "https://Ashmmitha.github.io/CineBloom",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
