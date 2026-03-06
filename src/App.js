@@ -9,7 +9,7 @@ import Signup from "./pages/Signup";
 function App() {
   const [user, setUser] = useState(null);
 
-  // On mount, check if user is in localStorage
+ 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) setUser(storedUser);

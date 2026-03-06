@@ -6,9 +6,8 @@ import "./Landing.css";
 
 function Landing() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState("dark"); // default dark
-
-  // Initialize tsparticles
+  const [mode, setMode] = useState("dark");
+  
   const particlesInit = async (main) => {
     await loadFull(main);
   };

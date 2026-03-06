@@ -15,7 +15,7 @@ function Profile() {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Stats
+ 
   const [stats, setStats] = useState(() => {
     const savedStats = JSON.parse(localStorage.getItem("userStats"));
     return savedStats || {
@@ -25,7 +25,6 @@ function Profile() {
     };
   });
 
-  // Auto-update currently watching from localStorage
   useEffect(() => {
     const handleStorage = () => {
       const saved = localStorage.getItem("continueWatching");
@@ -35,7 +34,7 @@ function Profile() {
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
-  // Get user info
+  
   useEffect(() => {
     const u = JSON.parse(localStorage.getItem("userData"));
     if (u && u.username) {
@@ -44,10 +43,9 @@ function Profile() {
     }
   }, []);
 
-  // TOTAL TRAILERS / HOURS WATCHED CALC
+ 
   const totalTrailers = currentlyWatching.length;
-  const totalHours = currentlyWatching.reduce((acc, item) => acc + (item.duration || 2), 0); // default 2 hrs if no duration
-
+  const totalHours = currentlyWatching.reduce((acc, item) => acc + (item.duration || 2), 0);
   return (
     <div className={`profile-container ${darkMode ? "dark-mode" : "light-mode"}`}>
 

@@ -1,9 +1,8 @@
-// src/api.js
+
 
 const API_KEY = "0803f8e4f55bb4bea443778f9bb90840";  
 const BASE_URL = "https://api.themoviedb.org/3";
 
-// Fetch YouTube trailer
 const fetchTrailer = async (id, type) => {
   try {
     if (type !== "movie" && type !== "tv") return null;
@@ -63,7 +62,7 @@ export const fetchTrending = async () => {
   rating: item.vote_average,
   description: item.overview,
   poster_path: item.poster_path,
-  backdrop_path: item.backdrop_path,   // 👈 ADD THIS
+  backdrop_path: item.backdrop_path,   
   trailer
 };
       })
@@ -111,8 +110,7 @@ export const searchMovies = async (query) => {
   rating: item.vote_average,
   description: item.overview,
   poster_path: item.poster_path,
-  backdrop_path: item.backdrop_path,   // 👈 ADD THIS
-  trailer
+  backdrop_path: item.backdrop_path,   
 };
       })
     );
@@ -123,7 +121,7 @@ export const searchMovies = async (query) => {
 };
 export const getAIRecommendations = async (title) => {
   try {
-    // Special case for Hoppers
+
     if (title === "Hoppers") {
       return [
         {
@@ -144,7 +142,7 @@ export const getAIRecommendations = async (title) => {
     if (!res.ok) throw new Error("Recommendation fetch failed");
 
     const data = await res.json();
-    return data; // array of recommended movies
+    return data; 
   } catch (err) {
     console.error(err);
     return [];

@@ -31,7 +31,7 @@ const [user, setUser] = useState(() => {
   const [debouncedSearch] = useDebounce(search, 500);
   
 
-  // -------------------- FUNCTIONS --------------------
+ 
   const toggleMyList = (movie) => {
     setMyList((prevList) => {
       const exists = prevList.find((item) => item.id === movie.id);
@@ -73,7 +73,7 @@ useEffect(() => {
   localStorage.setItem("continueWatching", JSON.stringify(continueWatching));
 }, [continueWatching]);
 
-  // -------------------- FETCH TRENDING --------------------
+  
   useEffect(() => {
     const loadTrending = async () => {
       try {
@@ -93,7 +93,6 @@ useEffect(() => {
     loadTrending();
   }, []);
 
-  // -------------------- SEARCH --------------------
   useEffect(() => {
     const searchData = async () => {
       try {
@@ -127,12 +126,11 @@ useEffect(() => {
     searchData();
   }, [debouncedSearch]);
 
-  // -------------------- LOCAL STORAGE --------------------
   useEffect(() => {
     localStorage.setItem("myList", JSON.stringify(myList));
   }, [myList]);
 
-// -------------------- TMDB RECOMMENDATIONS --------------------
+
 useEffect(() => {
   if (myList.length === 0) {
     setRecommendations([]);
@@ -156,7 +154,6 @@ const fetchRecommendations = async () => {
 
     const data = await res.json();
 
-    // 🔥 IF NO RECOMMENDATIONS → FETCH SIMILAR
     if (!data.results || data.results.length === 0) {
       const similarRes = await fetch(
         `https://api.themoviedb.org/3/${type}/${lastMovie.id}/similar?api_key=0803f8e4f55bb4bea443778f9bb90840`
@@ -201,7 +198,6 @@ const fetchRecommendations = async () => {
       return;
     }
 
-    // 🔥 NORMAL RECOMMENDATIONS CASE
     const formattedMain = await Promise.all(
       data.results.slice(0, 6).map(async (item) => {
         const videoRes = await fetch(
@@ -240,20 +236,20 @@ const fetchRecommendations = async () => {
   fetchRecommendations();
 }, [myList]);
   const filteredResults = results
-  .filter((item, idx) => idx !== bannerIndex) // keep banner out
+  .filter((item, idx) => idx !== bannerIndex) 
   .filter((item) => {
-    // 1️⃣ Genre filter
+    
     if (selectedGenre === "All") return true;
     const genreId = genreMap[selectedGenre];
     return item.genre_ids?.includes(genreId);
   })
   .filter((item) => {
-    // 2️⃣ Language filter
+    
     if (selectedLanguage === "All") return true;
     return item.original_language === languageMap[selectedLanguage];
   });
 
-  // -------------------- JSX --------------------
+  
   return (
     <div className={`app-container ${darkMode ? "dark-mode" : "light-mode"}`}>
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -365,7 +361,7 @@ const fetchRecommendations = async () => {
     isInList={myList.some((m) => m.id === movie.id)}
     myList={myList}
     onClick={() => handleMovieClick(movie)}
-    language={languageMap[selectedLanguage]} // remove "-US"
+    language={languageMap[selectedLanguage]}
   />
 ))}   
       </div>

@@ -11,11 +11,10 @@ function Login({ setUser }) {
 
   const navigate = useNavigate();
 
-  // email validation
+
   const isValidEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  // auto login
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
 
@@ -25,7 +24,7 @@ function Login({ setUser }) {
     }
   }, [navigate, setUser]);
 
-  // LOGIN FUNCTION
+
   const handleLogin = () => {
 
     if (!name || !email || !password) {
@@ -58,7 +57,7 @@ function Login({ setUser }) {
       return;
     }
 
-    // correct login
+  
     localStorage.setItem("currentUser", storedUser.username);
     setUser && setUser(storedUser.username);
 

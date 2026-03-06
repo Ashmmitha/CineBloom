@@ -2,8 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const navigate = useNavigate();   // 👈 INSIDE the function
-
+  const navigate = useNavigate();  
   return (
     <div>
       <button onClick={() => navigate("/profile")}>

@@ -51,7 +51,6 @@ function Card({ item, toggleMyList, isInList, myList, language = "en-US",onClick
     setTimeout(() => setShowSad(false), 1500);
   };
 
-  // ---------- AI Recommendations ----------
   useEffect(() => {
     const movieToUse = lastAdded || selectedMovie;
     if (!movieToUse) return;
@@ -105,9 +104,9 @@ function Card({ item, toggleMyList, isInList, myList, language = "en-US",onClick
       .finally(() => setLoading(false));
   }, [selectedMovie, lastAdded, myList]);
 
-  // ---------- Fetch Trailer ----------
+  
   useEffect(() => {
-    if (trailerUrl) return; // already has trailer
+    if (trailerUrl) return; 
 
     const fetchTrailer = async () => {
       try {
@@ -125,8 +124,7 @@ function Card({ item, toggleMyList, isInList, myList, language = "en-US",onClick
 
     fetchTrailer();
   }, [item]);
-  // ---------- Fetch Full Movie/Series Details ----------
-// ---------- Fetch Full Movie/Series Details with language ----------
+ 
 useEffect(() => {
   const fetchFullDetails = async () => {
     try {
