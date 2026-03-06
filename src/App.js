@@ -9,14 +9,13 @@ import Signup from "./pages/Signup";
 function App() {
   const [user, setUser] = useState(null);
 
- 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("currentUser"); // match what you used in signup
     if (storedUser) setUser(storedUser);
   }, []);
 
   return (
-    <Router>
+    <Router basename="/CineBloom"> {/* <- wrap all routes here */}
       <Routes>
         {/* Landing page always first */}
         <Route path="/" element={<Landing />} />

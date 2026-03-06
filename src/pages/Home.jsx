@@ -19,12 +19,14 @@ const [user, setUser] = useState(() => {
   const [continueWatching, setContinueWatching] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [selectedLanguage, setSelectedLanguage] = useState("All");
-  const [bannerIndex] = useState(0);
+  const [bannerIndex, setBannerIndex] = useState(0);
+  const [movies, setMovies] = useState([]);
   const [currentRecommendationMovie, setCurrentRecommendationMovie] = useState(null);
   const [recommendations, setRecommendations] = useState([]);
-  const [error, _setError] = useState(""); 
+
   const rowRef = useRef(null);
   const [debouncedSearch] = useDebounce(search, 500);
   
@@ -41,7 +43,19 @@ const [user, setUser] = useState(() => {
     });
   };
 
+  const addToContinue = (item) => {
+    if (!continueWatching.find((m) => m.id === item.id)) {
+      setContinueWatching([...continueWatching, item]);
+    }
+  };
 
+  const scroll = (direction) => {
+    if (!rowRef.current) return;
+    rowRef.current.scrollBy({
+      left: direction === "left" ? -500 : 500,
+      behavior: "smooth",
+    });
+  };
 
   const handleMovieClick = (movie) => {
     setCurrentRecommendationMovie(movie);
@@ -71,7 +85,7 @@ useEffect(() => {
         }));
         setResults(dataWithLinks);
       } catch {
-        _setError("Failed to load trending movies 😭");
+        setError("Failed to load trending movies 😭");
       } finally {
         setLoading(false);
       }
@@ -102,9 +116,9 @@ useEffect(() => {
           watchLink: `https://www.themoviedb.org/movie/${movie.id}`,
         }));
         setResults(dataWithLinks);
-      }catch {
-  _setError("Search failed 💔");
-}finally {
+      } catch {
+        setError("Search failed 💔");
+      } finally {
         setLoading(false);
       }
     };
@@ -230,12 +244,12 @@ const fetchRecommendations = async () => {
     return item.genre_ids?.includes(genreId);
   })
   .filter((item) => {
-    
+    // 2️⃣ Language filter
     if (selectedLanguage === "All") return true;
     return item.original_language === languageMap[selectedLanguage];
   });
 
-  
+  // -------------------- JSX --------------------
   return (
     <div className={`app-container ${darkMode ? "dark-mode" : "light-mode"}`}>
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -347,7 +361,7 @@ const fetchRecommendations = async () => {
     isInList={myList.some((m) => m.id === movie.id)}
     myList={myList}
     onClick={() => handleMovieClick(movie)}
-    language={languageMap[selectedLanguage]}
+    language={languageMap[selectedLanguage]} // remove "-US"
   />
 ))}   
       </div>

@@ -24,7 +24,7 @@ async function fetchTMDBSimilar(id, type) {
   }
 }
 
-function Card({ item, toggleMyList, isInList, myList, language = "en-US",onClick}) {
+function Card({ item, toggleMyList, isInList, myList, onClick }) {
   const [liked, setLiked] = useState(null);
   const [showSad, setShowSad] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -51,6 +51,7 @@ function Card({ item, toggleMyList, isInList, myList, language = "en-US",onClick
     setTimeout(() => setShowSad(false), 1500);
   };
 
+  // ---------- AI Recommendations ----------
   useEffect(() => {
     const movieToUse = lastAdded || selectedMovie;
     if (!movieToUse) return;
@@ -104,9 +105,9 @@ function Card({ item, toggleMyList, isInList, myList, language = "en-US",onClick
       .finally(() => setLoading(false));
   }, [selectedMovie, lastAdded, myList]);
 
-  
+  // ---------- Fetch Trailer ----------
   useEffect(() => {
-    if (trailerUrl) return; 
+    if (trailerUrl) return; // already has trailer
 
     const fetchTrailer = async () => {
       try {
@@ -124,14 +125,12 @@ function Card({ item, toggleMyList, isInList, myList, language = "en-US",onClick
 
     fetchTrailer();
   }, [item]);
- 
+  // ---------- Fetch Full Movie/Series Details ----------
 useEffect(() => {
   const fetchFullDetails = async () => {
     try {
       const type = item.type === "Series" ? "tv" : "movie";
-      const res = await fetch(
-        `${BASE_URL}/${type}/${item.id}?api_key=${API_KEY}&language=${language}`
-      );
+      const res = await fetch(`${BASE_URL}/${type}/${item.id}?api_key=${API_KEY}`);
       const data = await res.json();
       setFullDetails(data);
     } catch (err) {
@@ -140,11 +139,10 @@ useEffect(() => {
   };
 
   fetchFullDetails();
-}, [item, language]);
+}, [item]);
 
   return (
     <>
-    
       {/* ---------- CARD ---------- */}
       <motion.div
         className="card"
@@ -224,7 +222,7 @@ useEffect(() => {
 
               <div className="modal-info">
                 <h2>{selectedMovie.title}</h2>
-                <p className="card-description">{fullDetails?.overview || "No description available."}</p>
+                
 
                 <a
                   href={`https://www.themoviedb.org/${selectedMovie.type === "Series" ? "tv" : "movie"}/${selectedMovie.id}`}
