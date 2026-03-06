@@ -7,11 +7,8 @@ function Signup({ setUser }) {
   const [username, setUsername] = useState("");
   const [emailOrNumber, setEmailOrNumber] = useState("");
   const [password, setPassword] = useState("");
-
   const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
-  
+const [passwordError, setPasswordError] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
    const validateEmail = (email) => {
@@ -37,14 +34,11 @@ const getPasswordStrength = (password) => {
   return "Weak";
 };
 
-const passwordStrength = getPasswordStrength(password);
 
 
 
   const handleSignup = () => {
 
-    setEmailError("");
-    setPasswordError("");
 
     if (!username || !emailOrNumber || !password) {
       alert("Fill all fields! 💖");
@@ -99,7 +93,7 @@ return (
       value={emailOrNumber}
       onChange={(e) => setEmailOrNumber(e.target.value)}
     />
-
+{emailError && <p className="error-text">{emailError}</p>}
     <input
       type="password"
       placeholder="Password (min 10 characters)"

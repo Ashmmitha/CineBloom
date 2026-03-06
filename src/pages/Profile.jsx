@@ -16,7 +16,7 @@ function Profile() {
   });
 
  
-  const [stats, setStats] = useState(() => {
+  const [stats] = useState(() => {
     const savedStats = JSON.parse(localStorage.getItem("userStats"));
     return savedStats || {
       myList: 2,
