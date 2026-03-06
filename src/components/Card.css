@@ -1,0 +1,338 @@
+.card {
+  width: 200px;
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(12px);
+  color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.3s ease;
+}
+
+/* DARK MODE GLOW */
+.dark-mode .card {
+  box-shadow: 
+    0 0 20px rgba(255, 0, 128, 0.3),
+    0 0 40px rgba(199, 125, 255, 0.2);
+}
+
+/* LIGHT MODE GLOW */
+.light-mode .card {
+  background: rgba(255, 255, 255, 0.8);
+  color: #5a005a;
+  box-shadow: 
+    0 0 20px rgba(255, 105, 180, 0.3),
+    0 0 40px rgba(255, 182, 193, 0.4);
+}
+.card img,
+.card iframe.hover-video {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card h3 {
+  margin: 8px 0 4px 0;
+  font-size: 1rem;
+  text-align: center;
+}
+/* Banner card (Trending Now) */
+.card.banner {
+  width: 90%;           /* bigger than normal cards */
+  max-width: 1200px;
+  height: 450px;        /* taller than normal cards */
+  margin:0 auto 20px;    /* center horizontally */
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card.banner img,
+.card.banner iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.card.banner h3 {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  color: #fff;
+  font-size: 2rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+.card.banner .play-overlay {
+  font-size: 3rem;
+}
+.card.banner:hover {
+  transform: scale(1.0); /* don’t enlarge, keep it big */
+  z-index: 15; /* above other cards */
+}
+.card-media {
+  position: relative;
+  width: 100%;
+  height: 200px; /* adjust to your card size */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.card-media img,
+.card-media iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.hover-trailer {
+  pointer-events: none; /* prevents accidental clicks on hover */
+}
+.banner-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.hover-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rating-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.75);
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.mylist-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: hotpink;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  color: white;
+}
+
+.modal {
+  position: fixed;
+  inset: 0; /* shorthand for top:0; left:0; right:0; bottom:0; */
+  background: rgba(0, 0, 0, 0.85);
+  overflow-y: auto;       /* ✅ allows vertical scroll */
+  z-index: 1000;
+  padding: 20px;          /* spacing around modal */
+  box-sizing: border-box;
+  display: block;         /* important: flex centering breaks scroll */
+}
+.ai-list {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto; /* <-- horizontal scroll */
+  padding-bottom: 10px; /* extra padding so last card isn’t cut off */
+}
+
+.ai-list::-webkit-scrollbar {
+  height: 6px;
+}
+
+.ai-list::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
+/* Modal content scroll inside the modal */
+.modal-content.cinematic {
+  background: linear-gradient(to bottom, #111, #000);
+  width: 80%;             /* responsive width */
+  max-width: 900px;       /* limit max width */
+  max-height: 90vh;       /* ✅ limits height to viewport */
+  overflow-y: auto;       /* ✅ vertical scroll if content too tall */
+  border-radius: 12px;
+  color: white;
+  position: relative;
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
+  margin: 0 auto;         /* center horizontally */
+  padding: 20px;          /* space inside modal */
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+.play-btn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border-radius: 20px;
+  border: none;
+  background: hotpink;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.play-btn:hover {
+  transform: scale(1.05);
+}
+
+.card:hover {
+  transform: scale(1.08);
+  z-index: 10;
+}
+.recommended-badge {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(45deg, #ff4da6, #ff1a44);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: white;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.watch-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #e50914; /* Netflix-style red */
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background0.3s;
+}
+
+.watch-btn:hover {
+  background-color: #f6121d;
+}
+
+
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-info {
+  padding: 20px;
+}
+
+.netflix-watch-btn {
+  display: inline-block;
+  background: #e50914;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.netflix-watch-btn:hover {
+  background: #f6121d;
+  transform: scale(1.05);
+}
+
+.providers {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.providers img {
+  height: 40px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.providers img:hover {
+  transform: scale(1.1);
+}
+.netflix-watch-btn {
+  display: inline-block;
+  background: #e50914;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.netflix-watch-btn:hover {
+  background: #f6121d;
+  transform: scale(1.05);
+}
+.card-description {
+  font-size: 0.85rem;
+  color: #ddd;
+  margin-top: 4px;
+  line-height: 1.4;        /* makes multi-line spacing nicer */
+  max-height: none;         /* remove 2-line limit */
+  overflow: visible;        /* allow text to expand */
+  text-overflow: unset;     /* remove ellipsis */
+  white-space: normal;      /* allow wrapping */
+  word-wrap: break-word;    /* break very long words */
+}
+.rating-badge {
+  position: absolute;   /* float on top */
+  top: 8px;             /* distance from top */
+  left: 8px;            /* or right: 8px; depending on preference */
+  color: #ffd700;       /* gold star color */
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* ensures visibility on dark/light posters */
+  z-index: 10;
+  background: none;     /* remove any background box */
+  padding: 0;           /* no extra space */
+  border-radius: 0;     /* remove rounded edges */
+}

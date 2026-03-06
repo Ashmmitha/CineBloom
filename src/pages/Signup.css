@@ -1,0 +1,134 @@
+/* SIGNUP CONTAINER */
+
+.signup-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.4s ease;
+}
+
+/* ================= LIGHT MODE (PINK) ================= */
+
+.light-mode {
+  background: linear-gradient(135deg, #ffe6f0, #ffc0cb);
+}
+
+.light-mode .signup-box {
+  background: white;
+  color: #c2185b;
+  padding: 40px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(255,105,180,0.3);
+}
+
+/* inputs */
+
+.light-mode .signup-box input {
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: 1px solid #ff69b4;
+  outline: none;
+  font-size: 16px;
+}
+
+/* buttons */
+
+.light-mode .signup-box button {
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #ff69b4;
+  color: white;
+  transition: 0.3s;
+}
+
+.light-mode .signup-box button:hover {
+  background: #ff1493;
+  transform: scale(1.05);
+}
+
+
+/* ================= DARK MODE (NETFLIX) ================= */
+
+.dark-mode {
+  background: #0f0f0f;
+}
+
+.dark-mode .signup-box {
+  background: #1c1c1c;
+  color: white;
+  padding: 40px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  border: 1px solid #e50914;
+  box-shadow: 0 0 25px rgba(229,9,20,0.4);
+}
+
+/* inputs */
+
+.dark-mode .signup-box input {
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: 1px solid #e50914;
+  outline: none;
+  background: #111;
+  color: white;
+}
+
+/* buttons */
+
+.dark-mode .signup-box button {
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #e50914;
+  color: white;
+  transition: 0.3s;
+}
+
+.dark-mode .signup-box button:hover {
+  background: #b20710;
+  transform: scale(1.05);
+}
+
+/* DARK MODE TOGGLE BUTTON */
+
+.mode-toggle {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.light-mode .mode-toggle {
+  background: #ff69b4;
+  color: white;
+}
+
+.dark-mode .mode-toggle {
+  background: #e50914;
+  color: white;
+}
+
+.mode-toggle:hover {
+  transform: scale(1.05);
+}
