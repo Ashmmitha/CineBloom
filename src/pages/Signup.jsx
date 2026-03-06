@@ -11,7 +11,7 @@ function Signup({ setUser }) {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  // ✅ Add this line:
+  
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
    const validateEmail = (email) => {
@@ -51,19 +51,18 @@ const passwordStrength = getPasswordStrength(password);
       return;
     }
 
-    // EMAIL VALIDATION
+
     if (!validateEmail(emailOrNumber)) {
       setEmailError("⚠️ Invalid email format");
       return;
     }
 
-    // PASSWORD VALIDATION
     if (password.length < 10) {
       setPasswordError("⚠️ Password must be at least 10 characters");
       return;
     }
 
-    // SAVE USER
+    
     localStorage.setItem(
       "userData",
       JSON.stringify({ username, email: emailOrNumber, password })
