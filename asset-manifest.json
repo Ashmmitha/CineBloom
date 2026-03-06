@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/CineBloom/static/css/main.5ade6280.css",
+    "main.js": "/CineBloom/static/js/main.21e530af.js",
+    "static/js/453.825386d9.chunk.js": "/CineBloom/static/js/453.825386d9.chunk.js",
+    "index.html": "/CineBloom/index.html",
+    "main.5ade6280.css.map": "/CineBloom/static/css/main.5ade6280.css.map",
+    "main.21e530af.js.map": "/CineBloom/static/js/main.21e530af.js.map",
+    "453.825386d9.chunk.js.map": "/CineBloom/static/js/453.825386d9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5ade6280.css",
+    "static/js/main.21e530af.js"
+  ]
+}
