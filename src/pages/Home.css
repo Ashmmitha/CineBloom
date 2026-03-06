@@ -418,7 +418,7 @@ body {
 .recommendation-section .section-title {
   margin: 20px 0 10px;
 }
-* Recommendations / horizontal row */
+
 .scroll-row {
   display: flex;
   gap: 15px;             /* space between cards */
